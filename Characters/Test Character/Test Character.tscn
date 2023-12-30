@@ -1,0 +1,167 @@
+[gd_scene load_steps=11 format=3 uid="uid://waiks3neyhua"]
+
+[ext_resource type="Texture2D" uid="uid://b1pfhpvwkv8fe" path="res://Characters/Test Character/Sprites/Idle/Idle.png" id="1_4mhhn"]
+[ext_resource type="Script" path="res://Characters/Test Character/Test Character.gd" id="1_30dcp"]
+[ext_resource type="Script" path="res://Characters/Test Character/StateMachineTEST.gd" id="1_lx3wd"]
+[ext_resource type="Texture2D" uid="uid://rp3clc4k5u64" path="res://Characters/Test Character/Sprites/Walk/Walk.png" id="2_x763w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2yv3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4mhhn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x763w")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bvwuc"]
+resource_name = "Idle"
+length = 0.033335
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lvt0u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_q3ou1"]
+resource_name = "Walk"
+length = 0.20001
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwdgk"]
+_data = {
+"Idle": SubResource("Animation_bvwuc"),
+"RESET": SubResource("Animation_lvt0u"),
+"Walk": SubResource("Animation_q3ou1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37m3a"]
+size = Vector2(134, 343)
+
+[node name="TEST" type="CharacterBody2D"]
+script = ExtResource("1_30dcp")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_lx3wd")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2yv3f")
+animation = &"Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_bwdgk")
+}
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 10.5)
+shape = SubResource("RectangleShape2D_37m3a")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, 280)
+
+[node name="State" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -260.0
+offset_right = 51.0
+offset_bottom = -191.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Test"
+horizontal_alignment = 1
+
+[node name="Frames" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -312.0
+offset_right = 29.0
+offset_bottom = -243.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "60
+"
+horizontal_alignment = 1

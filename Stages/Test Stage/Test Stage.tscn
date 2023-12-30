@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bau0s1lclhhiy"]
+
+[ext_resource type="Texture2D" uid="uid://koa75fxdsabp" path="res://Stages/Test Stage/Test Stage.png" id="1_dw4ib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mugkg"]
+size = Vector2(3840, 175)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyure"]
+size = Vector2(169.5, 1475)
+
+[node name="Test Stage" type="Node2D"]
+
+[node name="TestStage" type="Sprite2D" parent="."]
+position = Vector2(25, -733)
+scale = Vector2(1.53144, 1.53144)
+texture = ExtResource("1_dw4ib")
+
+[node name="Walls and Floor" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls and Floor"]
+position = Vector2(-1, 88.5)
+shape = SubResource("RectangleShape2D_mugkg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls and Floor"]
+position = Vector2(2003, -738)
+shape = SubResource("RectangleShape2D_hyure")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls and Floor"]
+position = Vector2(-2005, -736.5)
+shape = SubResource("RectangleShape2D_hyure")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1920
+limit_top = -2000
+limit_right = 1920
+limit_bottom = 2000
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
