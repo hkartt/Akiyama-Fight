@@ -122,10 +122,6 @@ _data = {
 size = Vector2(134, 343)
 
 [node name="TEST" type="CharacterBody2D"]
-collision_mask = 6
-slide_on_ceiling = false
-platform_on_leave = 2
-platform_floor_layers = 4294967046
 script = ExtResource("1_30dcp")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -134,7 +130,6 @@ script = ExtResource("1_lx3wd")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2yv3f")
 animation = &"Idle"
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {
@@ -144,15 +139,11 @@ libraries = {
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 10.5)
 shape = SubResource("RectangleShape2D_37m3a")
-metadata/_edit_lock_ = true
 
 [node name="Raycasts" type="Node2D" parent="."]
 
-[node name="Ground" type="RayCast2D" parent="Raycasts"]
-position = Vector2(0, 173)
-target_position = Vector2(0, 10)
-collision_mask = 6
-hit_from_inside = true
+[node name="RayCast2D" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, 280)
 
 [node name="State" type="Label" parent="."]
 offset_left = -50.0

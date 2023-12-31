@@ -1,14 +1,22 @@
 extends CharacterBody2D
 
+var frame = 0
 var dash_duration = 10
+
+# Air variable. Jumps in games like KOF are considered a short hop if held under
+# 4 frames, and normal jumps if >= 5 frames
+var jump_squat = 4
+var landing_frames = 0
+var lag_frames = 0
+
+@onready var Ground = get_node('Raycasts/Ground')
 
 var RUNSPEED = 340
 var DASHSPEED = 390
 var WALKSPEED = 420
-var GRAVITY = 1800
-var JUMPFORCE = 500
-var MAX_JUMPFORCE = 800
-var DOUBLEJUMPFORCE = 1000
+var GRAVITY = 5500
+var HOPFORCE = 1300
+var JUMPFORCE = 2000
 var MAXAIRSPEED = 300
 var AIR_ACCEL = 25
 var FALLSPEED = 60
@@ -22,7 +30,7 @@ var left_side = true
 
 @onready var states = $State
 
-var frame = 0
+
 func updateframes(delta):
 	frame += 1
 
