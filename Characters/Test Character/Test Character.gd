@@ -8,15 +8,18 @@ var dash_duration = 10
 var jump_squat = 4
 var landing_frames = 0
 var lag_frames = 0
+var dash_frames = 10
 
 @onready var Ground = get_node('Raycasts/Ground')
 
-var RUNSPEED = 340
-var DASHSPEED = 390
+var RUNSPEED = 800
+var DASHSPEED = 700
 var WALKSPEED = 420
 var GRAVITY = 5500
 var HOPFORCE = 1300
 var JUMPFORCE = 2000
+var BACKDASH = 1000
+var BACKDASH_HEIGHT = 600
 var MAXAIRSPEED = 300
 var AIR_ACCEL = 25
 var FALLSPEED = 60
